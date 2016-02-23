@@ -1,5 +1,5 @@
 *.pyc
 *.swp
-angular_client
+owndrive_client
 local_settings.py
 static
