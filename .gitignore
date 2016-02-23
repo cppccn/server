@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+angular_client
+local_settings.py
+static
