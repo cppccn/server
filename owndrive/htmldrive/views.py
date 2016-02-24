@@ -88,7 +88,6 @@ class CommandView(View):
 
         return JsonResponse(response, safe="False")
 
-from sendfile import sendfile
 class DownloadView(View):
     def get(self, request, *args, **kwargs):
         global currentDir
