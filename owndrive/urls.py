@@ -23,7 +23,6 @@ from django.contrib.auth.decorators import login_required
     #url(r'^', include(router.urls)),
     #url(r'^files/', include('htmldrive.urls'), namespace='htmldrive'),
     # url(r'^$', 'owndrive.views.home', name='home'),
-    # url(r'^owndrive/', include('owndrive.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
