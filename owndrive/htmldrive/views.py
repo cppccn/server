@@ -109,3 +109,9 @@ class DownloadView(View):
         # It's usually a good idea to set the 'Content-Length' header too.
         # You can also set any other required headers: Cache-Control, etc.
         return response
+
+class UploadView(View):
+    def post(self, request, *args, **kwargs):
+        print "Dentro upload view"
+        response = HttpResponse("salut")
+        return response
