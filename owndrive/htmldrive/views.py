@@ -98,8 +98,8 @@ class DownloadView(View):
 
         command = request.GET.get('command', 'ls')
 
-        file_path = constants.SHARED_PATH + command.split(" ")[1]
-        print "FILE TO DOWNLOAD : " + constants.SHARED_PATH + file_path
+        file_path = SHARED_PATH + '/' + command.split(" ")[1]
+        print "FILE TO DOWNLOAD : " + file_path
 
         from django.utils.encoding import smart_str
 
@@ -113,7 +113,8 @@ class DownloadView(View):
 class UploadView(View):
     def post(self, request, *args, **kwargs):
         def handle_uploaded_file(f):
-            with open('/tmp/testupload.txt', 'wb+') as destination:
+            print "SHARED : " + SHARED_PATH
+            with open(SHARED_PATH + "/" + f._name, 'wb+') as destination:
                 for chunk in f.chunks():
                     destination.write(chunk)
 
