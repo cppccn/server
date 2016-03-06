@@ -120,7 +120,7 @@ class UploadView(View):
 
         print "Dentro upload view"
         print request.FILES.get('upl', 'nothing')
-        handle_uploaded_file(request.FILES.get('upl', 'nothing'))
+        handle_uploaded_file(request.FILES.get('upl[]', 'nothing'))
 
         response = HttpResponse("salut")
         return response
