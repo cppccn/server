@@ -103,8 +103,8 @@ class DownloadView(View):
 
         from django.utils.encoding import smart_str
 
-        response = HttpResponse(content_type='application/force-download')
-        response['Content-Disposition'] = 'attachment; filename=%s' % smart_str("newDownload")
+        response = HttpResponse(content_type='application/octet-stream')
+        response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(command.split(" ")[1])
         response['X-Sendfile'] = smart_str(file_path)
         # It's usually a good idea to set the 'Content-Length' header too.
         # You can also set any other required headers: Cache-Control, etc.
