@@ -11,9 +11,9 @@ class CommandFactory:
 			if command_name == "ls":
 				return commands.LsCommand(command)
 			elif command_name == "cp":
-				print "Copy Command"
+				return commands.EasyCommand(command)
 			elif command_name == "mv":
-				print "Move command"
+				return commands.EasyCommand(command)
 			elif command_name == "rm":
 				print "Remove Command"
 		else:
