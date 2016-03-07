@@ -74,7 +74,10 @@ class LoginView(View):
         return render(request, "htmldrive/templates/login.html")
 
 currentDir = "/"
-class CommandView(View):
+class CommandView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = '/'
+
     def get(self, request, *args, **kwargs):
         global currentDir
 
