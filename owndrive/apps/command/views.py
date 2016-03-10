@@ -1,9 +1,4 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from owndrive.htmldrive.serializers import UserSerializer, GroupSerializer
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
@@ -13,16 +8,10 @@ from django.shortcuts import render_to_response
 from django.template import loader
 from django.http import JsonResponse
 from owndrive.local_settings import *
-from os import listdir
-from os.path import isfile, join
-import os, time
 from owndrive.apps.command.tools.commands import commands
-from tools.FileEntry import *
 from owndrive.local_settings import *
 import json
 from tools.commands.CommandFactory import *
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
