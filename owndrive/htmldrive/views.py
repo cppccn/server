@@ -23,6 +23,7 @@ import json
 from owndrive.htmldrive.tools.commands.CommandFactory import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -40,17 +41,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 class FileView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = '/'
 
     def get(self, request, *args, **kwargs):
         return HttpResponse(open(app_path).read())
-
-class UploadView(View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse(open(app_path2).read())
 
 class LoginView(View):
     def post(self, request, *args, **kwargs):
@@ -73,57 +69,3 @@ class LoginView(View):
         print "Get login request"
         return render(request, "htmldrive/templates/login.html")
 
-currentDir = "/"
-class CommandView(LoginRequiredMixin, View):
-    login_url = '/login/'
-    redirect_field_name = '/'
-
-    def get(self, request, *args, **kwargs):
-        global currentDir
-
-        print "COMANDO: " + request.GET.get('command', 'ls')
-        currentDir = request.GET.get('currentDir', '/')
-        print "Current DIR : " + currentDir
-
-        command = request.GET.get('command', 'ls')
-        commandObject = CommandFactory().createCommand(command)
-        response = commandObject.execute(currentDir + '/')
-
-        return JsonResponse(response, safe="False")
-
-class DownloadView(View):
-    def get(self, request, *args, **kwargs):
-        global currentDir
-
-        print "COMANDO: " + request.GET.get('command', 'ls')
-        currentDir = request.GET.get('currentDir', '/')
-        print "Current DIR : " + currentDir
-
-        command = request.GET.get('command', 'ls')
-
-        file_path = SHARED_PATH + '/' + command.split(" ")[1]
-        print "FILE TO DOWNLOAD : " + file_path
-
-        from django.utils.encoding import smart_str
-
-        response = HttpResponse(content_type='application/octet-stream')
-        response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(command.split(" ")[1])
-        response['X-Sendfile'] = smart_str(file_path)
-        # It's usually a good idea to set the 'Content-Length' header too.
-        # You can also set any other required headers: Cache-Control, etc.
-        return response
-
-class UploadView(View):
-    def post(self, request, *args, **kwargs):
-        def handle_uploaded_file(f):
-            print "SHARED : " + SHARED_PATH
-            with open(SHARED_PATH + "/" + f._name, 'wb+') as destination:
-                for chunk in f.chunks():
-                    destination.write(chunk)
-
-        print "Dentro upload view"
-        print request.FILES.get('upl', 'nothing')
-        handle_uploaded_file(request.FILES.get('upl[]', 'nothing'))
-
-        response = HttpResponse("salut")
-        return response
