@@ -37,10 +37,10 @@ urlpatterns = [
     url(r'^', include('owndrive.apps.command.urls')),
     url(r'^', include('owndrive.apps.upload.urls')),
     url(r'^', include('owndrive.apps.download.urls')),
+    url(r'^', include('owndrive.apps.login.urls')),
     #url(r'^users', htmldrive.views.UserViewSet, name='users'),
     #url(r'^groups', htmldrive.views.GroupViewSet, name='groups'),
-    url(regex=r'^login/$', view=htmldrive.views.LoginView.as_view(), kwargs={'template_name': 'login.html'}, name='login'),
-    url(regex=r'^logout/$', view=logout, kwargs={'next_page': '/'}, name='logout'),
+
     #url(r'^$', htmldrive.views.LoginView.as_view(), name='file-list',),
     #url(r'^$', htmldrive.views.FileView.as_view(), name='file-list'),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
