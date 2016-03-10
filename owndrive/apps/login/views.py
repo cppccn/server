@@ -32,4 +32,4 @@ class LoginView(View):
 
     def get(self, request, *args, **kwargs):
         print "Get login request"
-        return render(request, "templates/login.html")
+        return render(request, "apps/login/templates/login.html")
