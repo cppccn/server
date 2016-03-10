@@ -1,7 +1,7 @@
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 from django.conf.urls import patterns, include, url
 from rest_framework import routers
@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^', include('owndrive.apps.download.urls')),
     url(r'^', include('owndrive.apps.login.urls')),
     #url(r'^users', htmldrive.views.UserViewSet, name='users'),
+    url(r'^admin/', include(admin.site.urls)),
     #url(r'^groups', htmldrive.views.GroupViewSet, name='groups'),
 
     #url(r'^$', htmldrive.views.LoginView.as_view(), name='file-list',),
