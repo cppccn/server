@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^$', include('owndrive.htmldrive.urls'), name='file-list'),
     url(r'^command/$', htmldrive.views.CommandView.as_view(), name='command'),
     url(r'^upload$', htmldrive.views.UploadView.as_view(), name='upload'),
-    url(r'^download', htmldrive.views.DownloadView.as_view(), name='download'),
+    url(r'^', include('owndrive.apps.download.urls')),
     #url(r'^users', htmldrive.views.UserViewSet, name='users'),
     #url(r'^groups', htmldrive.views.GroupViewSet, name='groups'),
     url(regex=r'^login/$', view=htmldrive.views.LoginView.as_view(), kwargs={'template_name': 'login.html'}, name='login'),
