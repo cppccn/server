@@ -34,8 +34,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$', include('owndrive.htmldrive.urls'), name='file-list'),
-    url(r'^command/$', htmldrive.views.CommandView.as_view(), name='command'),
-    url(r'^upload$', htmldrive.views.UploadView.as_view(), name='upload'),
+    url(r'^', include('owndrive.apps.command.urls')),
+    url(r'^', include('owndrive.apps.upload.urls')),
     url(r'^', include('owndrive.apps.download.urls')),
     #url(r'^users', htmldrive.views.UserViewSet, name='users'),
     #url(r'^groups', htmldrive.views.GroupViewSet, name='groups'),
