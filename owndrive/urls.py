@@ -4,8 +4,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 from django.conf.urls import patterns, include, url
-from owndrive.htmldrive import views
-import htmldrive.views
 from django.conf.urls.static import static
 from owndrive import settings
 from django.contrib.auth.views import login
@@ -13,7 +11,7 @@ from django.contrib.auth.views import logout
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    url(r'^$', include('owndrive.htmldrive.urls'), name='file-list'),
+    url(r'^', include('owndrive.apps.client.urls')),
     url(r'^', include('owndrive.apps.command.urls')),
     url(r'^', include('owndrive.apps.upload.urls')),
     url(r'^', include('owndrive.apps.download.urls')),
