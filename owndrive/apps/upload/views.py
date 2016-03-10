@@ -16,11 +16,8 @@ from owndrive.local_settings import *
 from os import listdir
 from os.path import isfile, join
 import os, time
-from owndrive.htmldrive.tools.commands import commands
-from owndrive.htmldrive.tools.FileEntry import *
 from owndrive.local_settings import *
 import json
-from owndrive.htmldrive.tools.commands.CommandFactory import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
