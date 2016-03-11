@@ -8,10 +8,9 @@ from django.shortcuts import render_to_response
 from django.template import loader
 from django.http import JsonResponse
 from owndrive.local_settings import *
-from owndrive.apps.command.tools.commands import commands
 from owndrive.local_settings import *
 import json
-from tools.commands.CommandFactory import *
+from CommandFactory import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
