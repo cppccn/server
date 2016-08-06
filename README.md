@@ -60,3 +60,12 @@ V display server response
 See requirements.txt
 mod_xsendfile (for apache2)
 apache2 (installed and set up)
+
+## Innovations
+
+- [X] Download Delegation to Server of file / torrent
+- [X] Encryption
+- [X] Streaming
+- [X] Easy to install and self-hosting
+- [X] Filters and Handling of Multiple Files Selection (Download)
+- [X] 
