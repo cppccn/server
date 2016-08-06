@@ -68,4 +68,5 @@ apache2 (installed and set up)
 - [X] Streaming
 - [X] Easy to install and self-hosting
 - [X] Filters and Handling of Multiple Files Selection (Download)
-- [X] 
+- [X] Shell
+- [X] File Versioning with Git
