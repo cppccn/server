@@ -25,16 +25,3 @@ class EasyCommand(BaseCommand):
 		
 		return { "type" : 0, "message" : "+OK: " + proc}
 		#p = subprocess.Popen(args) # Success!
-
-
-
-
-
-
-
-
-
-
-
-
-
