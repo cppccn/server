@@ -1,4 +1,5 @@
-# owndrive-server
+# cappuccino-server
+
 Web Command Based File Server
 
 This project, made with **Django** framework, aims to provide the user with an easy and free way to have access to their own files from anywhere in the world.
