@@ -12,7 +12,7 @@ pip install -r requirements.txt
 git clone git@github.com:cappuccino-app/cappuccino-web.git .
 
 # Creating Static Files Directory for django
-mkdir -p owndrive/static
+mkdir -p cappuccino-server/owndrive/static
 
 # Collecting Static Files for serving Web Client Resources
 python manage.py collectstatic
