@@ -1,4 +1,4 @@
 Django==1.9.2
 djangorestframework==3.3.2
-mod-wsgi==4.4.22
+https://github.com/GrahamDumpleton/mod_wsgi/archive/develop.zip
 MySQL-python==1.2.5
