@@ -80,4 +80,4 @@ DATABASES = {
 
 LOGIN_URL = '/login/'
 
-SHARED_PATH = ""
+SHARED_PATH = "/tmp"
