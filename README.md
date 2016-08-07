@@ -29,16 +29,73 @@ It provides developers with a basic system architecture that can easily be exten
 - virtualenv
 - source
 
-## Install
+## Default Automatic Install
 ```bash
   git clone git@github.com:cappuccino-app/cappuccino-server.git
   cd cappuccino-server
   bash install.sh
 ```
+
 While installing ...
-- Put the password to clone git repositories
-- Answer Yes to the Static files collection
 - Insert your MySql Passwd in order for the script to create the database
+- Insert the Password for the admin user automatically created
+
+## Manual Installation
+We'll start by installing virtualenv
+```bash
+pip install virtualenv
+```
+then we use the tool to create a virtual environment which will host all our django packages, then we activate it:
+```bash
+virtualenv env
+source env/bin/activate
+```
+
+We download the Web-Client and move it inside the server main directory: 
+```bash
+wget https://github.com/cappuccino-app/cappuccino-web/archive/master.zip
+unzip master.zip
+mv cappuccino-web-master cappuccino-web
+```
+
+We install all requirements using ***pip***
+```bash
+pip install -r requirements.txt
+```
+
+We create a static files directory in order for our server to be able to collect and serve all static resources for login and the web-client:
+```bash
+mkdir -p owndrive/static
+python manage.py collectstatic --no-input
+```
+It's now the time to create a database for our server application, which we'll do by using mysql:
+```bash
+mysql -u [USERNAME] -e "CREATE DATABASE IF NOT EXISTS [DATABASE_NAME]"
+```
+We fill up ***local_settings.py*** with missing DATABASE informations:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '[DATABASE_NAME]',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': '[DATABASE_USER]',
+        'PASSWORD': '[DATABASE_PASSWD]',
+        'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',                      # Set to empty string for default.
+    }
+}
+```
+
+We apply all necessary database migration:
+```bash
+python manage.py migrate
+```
+
+Finally, we create a superuser in order to be able login through the Web-Client
+```bash
+python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
+```
 
 In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there (***/tmp*** by default), the Database used by Django, its name, user and password.
 
