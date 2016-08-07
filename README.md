@@ -27,7 +27,7 @@ It provides developers with a basic system architecture that can easily be exten
 - virtualenv
 - source
 
-# Install
+## Install
 ```bash
   git clone git@github.com:cappuccino-app/cappuccino-server.git
   cd cappuccino-server
@@ -40,11 +40,14 @@ While installing ...
 
 In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there (***/tmp*** by default), the Database used by Django, its name, user and password.
 
-# Run
+## Run
 ```bash
   bash run.sh
 ``` 
 Navigate with your browser to http://localhost:8000 and login with ***admin_user*** as username using password you just set.
+
+## Architecture
+![alt tag](https://i.imgsafe.org/732f8bf199.jpg)
 
 ## Functionnalities
 
