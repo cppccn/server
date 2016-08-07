@@ -26,17 +26,17 @@ See requirements.txt
 - source
 
 # Install
-
-{{ bash
-git clone git@github.com:cappuccino-app/cappuccino-server.git
-cd cappuccino-server
-bash install.sh
-}}
+```bash
+  git clone git@github.com:cappuccino-app/cappuccino-server.git
+  cd cappuccino-server
+  bash install.sh
+```
 While installing ...
 - Put the password to clone git repositories
 - Answer Yes to the Static files collection
 - Insert your MySql Passwd in order for the script to create the database
-- Last step: modify local_settings.py database PASSWORD field
+
+Last step: modify local_settings.py database PASSWORD field
 
 
 ## Functionnalities
