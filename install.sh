@@ -1,4 +1,8 @@
-!# /bin/sh -x
+#! /bin/sh
+
+# TODO:
+# Most of this command could be defined in the README.md
+# to let users keep the control of the installation!
 
 # Installing Virtualenv
 echo -e "Installing virtualenv ..."
@@ -14,11 +18,13 @@ echo -e "Installing PIP requirements ..."
 pip install -r requirements.txt
 
 # Installing Web Client
-echo -e "Cloning Cappuccino-Web ..."
-git clone git@github.com:cappuccino-app/cappuccino-web.git
+# TODO: Ugly.. maybe a git submodule could be a good idea
+#echo -e "Cloning Cappuccino-Web ..."
+#git clone git@github.com:cappuccino-app/cappuccino-web.git
 
 # Creating Static Files Directory for django
 echo -e "Creating Static Files Directory ..."
+# TODO: Rename owndrive to cappuccino
 mkdir -p owndrive/static
 
 # Collecting Static Files for serving Web Client Resources
@@ -32,6 +38,7 @@ mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino" -p
 # Setting Password inside local_settings.py
 echo -n "Enter the Password for MySql database, User Root [ENTER]: "
 read passwd
+# TODO: Ugly sed.. remove it!
 sed -i "s/'PASSWORD': '',/'PASSWORD': '$passwd',/g" owndrive/local_settings.py
 
 # Making Migrations
