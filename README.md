@@ -2,16 +2,18 @@
 
 Web Command Based File Server
 
-This project, made with **Django** framework, aims to provide the user with an easy and free way to have access to their own files from anywhere in the world.
+This project, made with **Django** framework, aims to provide the user with an easy and free way to have access to their own files from anywhere in the world, with no fees or storage limit, thanks to self-hosting.
 
-It provides developers with a basic system architecture to build their own server or client.
-- Pluggable modules (contain each functionality)
-- Client served as a web app (No dependencies with the Server, it can so be easily rebuilt on your own taste)
-- API specification is the only connection between Server and Client
+It provides developers with a basic system architecture that can easily be extended:
+- Pluggable modules (one par functionality)
+- Client served as a web app
+- No dependencies Client-Server, the API contract allows communication
 - Web based to maximize portability (no need of bringing the client software with you ... )
 
 ## Requirements
-See requirements.txt
+- a computer switched on
+- connection to the net
+- read requirements.txt
 
 ### Set up for Prod
 - mod_xsendfile (for apache2)
@@ -36,35 +38,31 @@ While installing ...
 - Answer Yes to the Static files collection
 - Insert your MySql Passwd in order for the script to create the database
 
-Last step: modify local_settings.py database PASSWORD field
-
-In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there, the database used from Django, the Database name, user and password. The '/tmp' dir has been chosen as a default value for the shared directory path. 
+In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there (***/tmp*** by default), the Database used by Django, its name, user and password.
 
 # Run
 ```bash
   python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
   bash run.sh
 ``` 
-Navigate with your browser to http://localhost:8000 and login with ***admin_user*** as username and the password you just set.
+Navigate with your browser to http://localhost:8000 and login with ***admin_user*** as username using password you just set.
 
 ## Functionnalities
 
-- File listing (table view)
-- Copy
-- Move
-- Delete
+- Web Interface
+- Shell Commands (File System and Utilities)
 - Download
 - Upload
 - Stream
+- End-to-end Encryption
+- Download Delegation to Server of file / torrent
+- Easy to install and self-hosted
+- Filters and Regex for searching Files
+- File Versioning with Git
 
 ## History
 
 I wanted to have a customizable system to have access to my own files from outside home, but looking on the net I only found an old versioned django server or Server and Clients with too big dependencies to make the effort of rewriting my own client.
-
-## Requirements
-
-- a computer switched on
-- connection to the net
 
 ## To do List:
 ------------------------------------------------------------
@@ -92,13 +90,3 @@ V display server response
 - require login for video files (temporarily set them as static?)
 - dynamically include modules urls
 - make easy installing setup.py
-
-## Innovations
-
-- [X] Download Delegation to Server of file / torrent
-- [X] Encryption
-- [X] Streaming
-- [X] Easy to install and self-hosting
-- [X] Filters and Handling of Multiple Files Selection (Download)
-- [X] Shell
-- [X] File Versioning with Git
