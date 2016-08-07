@@ -10,6 +10,35 @@ It provides developers with a basic system architecture to build their own serve
 - API specification is the only connection between Server and Client
 - Web based to maximize portability (no need of bringing the client software with you ... )
 
+## Requirements
+See requirements.txt
+
+### Set up for Prod
+- mod_xsendfile (for apache2)
+- apache2 (installed and set up)
+- config ssl
+
+### Set up for development purposes
+- python 2.7
+- pip
+- mysql
+- virtualenv
+- source
+
+# Install
+
+{{ bash
+git clone git@github.com:cappuccino-app/cappuccino-server.git
+cd cappuccino-server
+bash install.sh
+}}
+While installing ...
+- Put the password to clone git repositories
+- Answer Yes to the Static files collection
+- Insert your MySql Passwd in order for the script to create the database
+- Last step: modify local_settings.py database PASSWORD field
+
+
 ## Functionnalities
 
 - File listing (table view)
@@ -55,11 +84,6 @@ V display server response
 - require login for video files (temporarily set them as static?)
 - dynamically include modules urls
 - make easy installing setup.py
-
-## Requirements
-See requirements.txt
-mod_xsendfile (for apache2)
-apache2 (installed and set up)
 
 ## Innovations
 
