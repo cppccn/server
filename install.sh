@@ -26,4 +26,12 @@ python manage.py collectstatic
 
 # Creating MySql database
 echo -e "Creating MySql Database ..."
-mysql -u root -e "CREATE DATABASE cappuccino" -p
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino" -p
+
+# Making Migrations
+echo -e "Applying Migrations ..."
+python manage.py migrate
+
+# Creating Super User
+echo -e "Creating Super User for Cappuccino-App ..."
+python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
