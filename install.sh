@@ -26,4 +26,4 @@ python manage.py collectstatic
 
 # Creating MySql database
 echo -e "Creating MySql Database ..."
-mysql -u root -e "create database 'cappuccino'" -p
+mysql -u root -e "CREATE DATABASE cappuccino" -p
