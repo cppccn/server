@@ -1,5 +1,8 @@
+from __future__ import print_function
 import os
 import logging
+import string
+import random
 
 PROJECT_ROOT = os.getcwd() + '/'
 
@@ -7,7 +10,7 @@ log = logging.getLogger('ciao')
 log.info(PROJECT_ROOT)
 
 # Client-Web configuration, the server needs to know the paths in order to serve the client files
-CLIENT_ROOT = PROJECT_ROOT + 'owndrive_client'
+CLIENT_ROOT = PROJECT_ROOT + 'cappuccino-web'
 CLIENT_JS = CLIENT_ROOT + 'js'
 CLIENT_CSS = CLIENT_ROOT + 'css'
 CLIENT_APP = CLIENT_ROOT + 'app.html'
@@ -52,7 +55,9 @@ MEDIA_ROOT = '/tmp/'
 MEDIA_URL = ''
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+# Get ascii Characters numbers and punctuation (minus quote characters as they could terminate string).
+chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
+SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
 
 TEMPLATE_DIRS = (
     PROJECT_ROOT + 'owndrive/',
