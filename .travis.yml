@@ -3,4 +3,4 @@ python:
   - 2.7
   - 3.5
 script:
-  - bash install.sh
+  - bash install_test.sh
