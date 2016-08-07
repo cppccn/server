@@ -1,6 +1,8 @@
+!# /bin/sh -x
+
 # Installing Virtualenv
 echo -e "Installing virtualenv ..."
-pip install virtualenv
+sudo pip install virtualenv
 
 # Creating and Activating Virtualenv
 echo -e "Creating new Virtual Environment ..."
@@ -12,7 +14,6 @@ echo -e "Installing PIP requirements ..."
 pip install -r requirements.txt
 
 # Installing Web Client
-echo -e
 echo -e "Cloning Cappuccino-Web ..."
 git clone git@github.com:cappuccino-app/cappuccino-web.git
 
