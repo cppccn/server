@@ -42,8 +42,10 @@ In order to modify personal settings, edit owndrive/local_settings.py file, you 
 
 # Run
 ```bash
+  python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
   bash run.sh
-```
+``` 
+Navigate with your browser to http://localhost:8000 and login with ***admin_user*** as username and the password you just set.
 
 ## Functionnalities
 
