@@ -38,6 +38,12 @@ While installing ...
 
 Last step: modify local_settings.py database PASSWORD field
 
+In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there, the database used from Django, the Database name, user and password. The '/tmp' dir has been chosen as a default value for the shared directory path. 
+
+# Run
+```bash
+  bash run.sh
+```
 
 ## Functionnalities
 
