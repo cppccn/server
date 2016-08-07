@@ -13,14 +13,14 @@ echo -e "Creating new Virtual Environment ..."
 virtualenv env
 source env/bin/activate
 
-# Installing Django pip requirements
-echo -e "Installing PIP requirements ..."
-pip install -r requirements.txt
-
 # Installing Web Client
 # TODO: Ugly.. maybe a git submodule could be a good idea
 #echo -e "Cloning Cappuccino-Web ..."
 #git clone git@github.com:cappuccino-app/cappuccino-web.git
+
+# Installing Django pip requirements
+echo -e "Installing PIP requirements ..."
+pip install -r requirements.txt
 
 # Creating Static Files Directory for django
 echo -e "Creating Static Files Directory ..."
