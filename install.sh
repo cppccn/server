@@ -22,7 +22,7 @@ mkdir -p owndrive/static
 
 # Collecting Static Files for serving Web Client Resources
 echo -e "Collecting Static Files ..."
-python manage.py collectstatic
+python manage.py collectstatic --no-input
 
 # Creating MySql database
 echo -e "Creating MySql Database ..."
