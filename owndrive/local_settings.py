@@ -10,13 +10,13 @@ log = logging.getLogger('ciao')
 log.info(PROJECT_ROOT)
 
 # Client-Web configuration, the server needs to know the paths in order to serve the client files
-CLIENT_ROOT = PROJECT_ROOT + 'cappuccino-web'
+CLIENT_ROOT = PROJECT_ROOT + 'cappuccino-web/'
 CLIENT_JS = CLIENT_ROOT + 'js'
 CLIENT_CSS = CLIENT_ROOT + 'css'
 CLIENT_APP = CLIENT_ROOT + 'app.html'
 
 # Upload Form Configuration
-UPLOAD_FORM_ROOT = CLIENT_ROOT + 'mini-upload-form' 
+UPLOAD_FORM_ROOT = CLIENT_ROOT + 'mini-upload-form/'
 UPLOAD_FORM_JS = UPLOAD_FORM_ROOT + 'assets/js'
 UPLOAD_FORM_CSS = UPLOAD_FORM_ROOT + 'assets/css'
 UPLOAD_FORM_APP = UPLOAD_FORM_ROOT + 'index.html'
@@ -69,7 +69,7 @@ TEMPLATE_DIRS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'django_owndrive',                      # Or path to database file if using sqlite3.
+        'NAME': 'cappuccino',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': '',
