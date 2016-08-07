@@ -3,10 +3,11 @@
 # TODO:
 # Most of this command could be defined in the README.md
 # to let users keep the control of the installation!
+DATABASE_NAME="cappuccino"
 
 # Installing Virtualenv
 echo -e "Installing virtualenv ..."
-sudo pip install virtualenv
+pip install virtualenv
 
 # Creating and Activating Virtualenv
 echo -e "Creating new Virtual Environment ..."
@@ -36,19 +37,28 @@ python manage.py collectstatic --no-input
 
 # Creating MySql database
 # TODO: Re-Enable it later!
-#echo -e "Creating MySql Database ..."
-#mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino" -p root
+echo -e "Creating MySql Database ..."
 
-# Setting Password inside local_settings.py
-# TODO: Ugly sed.. remove it!
-#echo -n "Enter the Password for MySql database, User Root [ENTER]: "
-#read passwd
-#sed -i "s/'PASSWORD': '',/'PASSWORD': '$passwd',/g" owndrive/local_settings.py
+if [ "$1" == "--test" ]
+	then
+		mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DATABASE_NAME"
 
-# Making Migrations
-echo -e "Applying Migrations ..."
-python manage.py migrate
+		# Making Migrations
+		echo -e "Applying Migrations ..."
+		python manage.py migrate
+	else
+		echo "Choose MySql Password [ENTER]: "
+		read PASSWD
+		mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DATABASE_NAME"	-p$PASSWD
 
-# Creating Super User
-echo -e "Creating Super User for Cappuccino-App ..."
-python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
+		# Setting Password inside local_settings.py
+		sed -i "s/'PASSWORD': '',/'PASSWORD': '$PASSWD',/g" owndrive/local_settings.py
+
+		# Making Migrations
+		echo -e "Applying Migrations ..."
+		python manage.py migrate
+
+		# Creating Super User
+		echo -e "Creating Super User for Cappuccino-App ..."
+		python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
+fi
