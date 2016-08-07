@@ -38,12 +38,6 @@ python manage.py collectstatic --no-input
 echo -e "Creating MySql Database ..."
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino"
 
-# Setting Password inside local_settings.py
-echo -n "Enter the Password for MySql database, User Root [ENTER]: "
-read passwd
-# TODO: Ugly sed.. remove it!
-sed -i "s/'PASSWORD': '',/'PASSWORD': '$passwd',/g" owndrive/local_settings.py
-
 # Making Migrations
 echo -e "Applying Migrations ..."
 python manage.py migrate
