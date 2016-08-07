@@ -16,7 +16,10 @@ source env/bin/activate
 # Installing Web Client
 # TODO: Ugly.. maybe a git submodule could be a good idea
 echo -e "Cloning Cappuccino-Web ..."
-git clone git@github.com:cappuccino-app/cappuccino-web.git
+#git clone git@github.com:cappuccino-app/cappuccino-web.git
+wget https://github.com/cappuccino-app/cappuccino-web/archive/master.zip
+unzip master.zip
+mv cappuccino-web-master cappuccino-web
 
 # Installing Django pip requirements
 echo -e "Installing PIP requirements ..."
