@@ -35,8 +35,9 @@ echo -e "Collecting Static Files ..."
 python manage.py collectstatic --no-input
 
 # Creating MySql database
-echo -e "Creating MySql Database ..."
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino" -p root
+# TODO: Re-Enable it later!
+#echo -e "Creating MySql Database ..."
+#mysql -u root -e "CREATE DATABASE IF NOT EXISTS cappuccino" -p root
 
 # Setting Password inside local_settings.py
 # TODO: Ugly sed.. remove it!
