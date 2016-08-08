@@ -2,4 +2,4 @@ language: python
 python:
   - 2.7
 script:
-  - ./install.sh --test
+  - bash install.sh --test
