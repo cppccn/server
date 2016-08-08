@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # TODO:
 # Most of this command could be defined in the README.md
@@ -39,7 +39,7 @@ python manage.py collectstatic --no-input
 # TODO: Re-Enable it later!
 echo -e "Creating MySql Database ..."
 
-if [ "$1" == "--test" ]
+if [ $1 == "--test" ]
 	then
 		mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DATABASE_NAME"
 
