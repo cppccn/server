@@ -24,7 +24,7 @@ mv cappuccino-web-master cappuccino-web
 
 # Installing Django pip requirements
 echo -e "Installing PIP requirements ..."
-pip install -r requirements.txt
+pip install -r requirements-python2.7.txt
 
 # Creating Static Files Directory for django
 echo -e "Creating Static Files Directory ..."
