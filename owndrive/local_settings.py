@@ -77,7 +77,7 @@ DATABASES = {
         'NAME': 'cappuccino',
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         # Empty for localhost through domain sockets or '127.0.0.1' for
         # localhost through TCP.
         'HOST': 'localhost',
