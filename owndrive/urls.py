@@ -23,4 +23,3 @@ urlpatterns = [
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

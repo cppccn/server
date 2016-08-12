@@ -66,7 +66,7 @@ STATICFILES_DIRS = local_settings.STATICFILES_DIRS
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -76,8 +76,8 @@ SECRET_KEY = local_settings.SECRET_KEY
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#    'admin_tools.template_loaders.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'admin_tools.template_loaders.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (

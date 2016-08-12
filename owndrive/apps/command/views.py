@@ -14,6 +14,7 @@ import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
+
 class CommandView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = '/'

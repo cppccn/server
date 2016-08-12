@@ -13,10 +13,13 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
+
 class LoginView(View):
+
     def post(self, request, *args, **kwargs):
         from django.contrib.auth import authenticate
-        user = authenticate(username=request.POST.get('username', 'none'), password=request.POST.get('password', 'none'))
+        user = authenticate(username=request.POST.get(
+            'username', 'none'), password=request.POST.get('password', 'none'))
         if user is not None:
             # the password verified for the user
             if user.is_active:
@@ -26,7 +29,8 @@ class LoginView(View):
             else:
                 print("The password is valid, but the account has been disabled!")
         else:
-            # the authentication system was unable to verify the username and password
+            # the authentication system was unable to verify the username and
+            # password
             print("The username and password were incorrect.")
             return HttpResponse("username and password incorrect")
 

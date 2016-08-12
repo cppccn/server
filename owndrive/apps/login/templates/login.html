@@ -1,18 +1,27 @@
 <html>
-  <head>
+
+<head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/static/login.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="login">
-      <div class="login-triangle"></div>
+        <div class="login-triangle"></div>
         <h2 class="login-header">Log in</h2>
         <form method="post" action="/login/" class="login-container">
-          {% csrf_token %}
-          <p><input type="text" name="username" id="username" placeholder="Username"/></p>
-          <p><input type="password" name="password" id="password" placeholder="Password"/></p>
-          <p><input type="submit" value="Log in"></p>
+            {% csrf_token %}
+            <p>
+                <input type="text" name="username" id="username" placeholder="Username" />
+            </p>
+            <p>
+                <input type="password" name="password" id="password" placeholder="Password" />
+            </p>
+            <p>
+                <input type="submit" value="Log in">
+            </p>
         </form>
     </div>
-  </body>
+</body>
+
 </html>

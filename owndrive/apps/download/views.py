@@ -12,7 +12,9 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
+
 class DownloadView(View):
+
     def get(self, request, *args, **kwargs):
         global currentDir
 

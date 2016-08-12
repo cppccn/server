@@ -14,12 +14,14 @@ from django.http import JsonResponse
 from owndrive.local_settings import *
 from os import listdir
 from os.path import isfile, join
-import os, time
+import os
+import time
 from owndrive.local_settings import *
 import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class FileView(LoginRequiredMixin, View):
     login_url = '/login/'

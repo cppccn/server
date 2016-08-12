@@ -13,7 +13,9 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
+
 class UploadView(View):
+
     def post(self, request, *args, **kwargs):
         def handle_uploaded_file(f):
             print("SHARED : " + SHARED_PATH)
