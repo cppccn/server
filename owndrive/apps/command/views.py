@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from owndrive.local_settings import *
 from owndrive.local_settings import *
 import json
-from CommandFactory import *
+#from CommandFactory import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
@@ -21,9 +21,9 @@ class CommandView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         global currentDir
 
-        print "COMANDO: " + request.GET.get('command', 'ls')
+        print("COMANDO: " + request.GET.get('command', 'ls'))
         currentDir = request.GET.get('currentDir', '/')
-        print "Current DIR : " + currentDir
+        print("Current DIR : " + currentDir)
 
         command = request.GET.get('command', 'ls')
         commandObject = CommandFactory().createCommand(command)

@@ -31,5 +31,5 @@ class LoginView(View):
             return HttpResponse("username and password incorrect")
 
     def get(self, request, *args, **kwargs):
-        print "Get login request"
+        print("Get login request")
         return render(request, "apps/login/templates/login.html")

@@ -16,13 +16,13 @@ from django.contrib.auth import login
 class UploadView(View):
     def post(self, request, *args, **kwargs):
         def handle_uploaded_file(f):
-            print "SHARED : " + SHARED_PATH
+            print("SHARED : " + SHARED_PATH)
             with open(SHARED_PATH + "/" + f._name, 'wb+') as destination:
                 for chunk in f.chunks():
                     destination.write(chunk)
 
-        print "Dentro upload view"
-        print request.FILES.get('upl', 'nothing')
+        print("Dentro upload view")
+        print(request.FILES.get('upl', 'nothing'))
         handle_uploaded_file(request.FILES.get('upl[]', 'nothing'))
 
         response = HttpResponse("salut")

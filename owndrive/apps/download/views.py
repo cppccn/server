@@ -16,14 +16,14 @@ class DownloadView(View):
     def get(self, request, *args, **kwargs):
         global currentDir
 
-        print "COMANDO: " + request.GET.get('command', 'ls')
+        print("COMANDO: " + request.GET.get('command', 'ls'))
         currentDir = request.GET.get('currentDir', '/')
-        print "Current DIR : " + currentDir
+        print("Current DIR : " + currentDir)
 
         command = request.GET.get('command', 'ls')
 
         file_path = SHARED_PATH + '/' + command.split(" ")[1]
-        print "FILE TO DOWNLOAD : " + file_path
+        print("FILE TO DOWNLOAD : " + file_path)
 
         from django.utils.encoding import smart_str
 
