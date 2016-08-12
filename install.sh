@@ -7,7 +7,7 @@ DATABASE_NAME="cappuccino"
 
 # Installing Virtualenv
 echo -e "Installing virtualenv ..."
-sudo pip install virtualenv
+pip install virtualenv
 
 # Creating and Activating Virtualenv
 echo -e "Creating new Virtual Environment ..."
