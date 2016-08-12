@@ -7,7 +7,7 @@ Web Command Based File Server
 This project, made with **Django** framework, aims to provide the user with an easy and free way to have access to their own files from anywhere in the world, with no fees or storage limit, thanks to self-hosting.
 
 It provides developers with a basic system architecture that can easily be extended:
-- Pluggable modules (one par functionality)
+- Pluggable modules (one per functionality)
 - Client served as a web app
 - No dependencies Client-Server, the API contract allows communication
 - Web based to maximize portability (no need of bringing the client software with you ... )
