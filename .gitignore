@@ -1,6 +1,6 @@
 *.pyc
 *.swp
-owndrive_client
+cappuccino_client
 local_settings.py
 static
 

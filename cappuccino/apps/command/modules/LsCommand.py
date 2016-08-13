@@ -1,11 +1,11 @@
-from owndrive.apps.command.models import BaseCommand
-from owndrive import constants
+from cappuccino.apps.command.models import BaseCommand
+from cappuccino import constants
 from os import listdir
 from os.path import isfile, join
-from owndrive.apps.command.FileEntry import *
+from cappuccino.apps.command.FileEntry import *
 import shlex
 import subprocess
-from owndrive.models import CommandHistory
+from cappuccino.models import CommandHistory
 
 baseDir = constants.SHARED_PATH + "/"
 

@@ -1,8 +1,7 @@
-# Django settings for owndrive project.
-from owndrive import local_settings
+# Django settings for cappuccino project.
+from cappuccino import local_settings
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -73,12 +72,35 @@ STATICFILES_FINDERS = (
 SECRET_KEY = local_settings.SECRET_KEY
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    #'admin_tools.template_loaders.Loader',
-    #'django.template.loaders.eggs.Loader',
-)
+# TEMPLATE_LOADERS = (
+#     'django.template.loaders.filesystem.Loader',
+#     'django.template.loaders.app_directories.Loader',
+#     #'admin_tools.template_loaders.Loader',
+#     #'django.template.loaders.eggs.Loader',
+# )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            'cappuccino/',
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -91,12 +113,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'owndrive.urls'
+ROOT_URLCONF = 'cappuccino.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'owndrive.wsgi.application'
-
-TEMPLATE_DIRS = local_settings.TEMPLATE_DIRS
+WSGI_APPLICATION = 'cappuccino.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

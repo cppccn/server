@@ -1,4 +1,4 @@
-from owndrive import constants
+from cappuccino import constants
 
 
 class CommandFactory:
@@ -14,7 +14,7 @@ class CommandFactory:
                 if entry == command_name:
                     class_name = command_name[
                         0].capitalize() + command_name[1:] + "Command"
-                    module = __import__("owndrive.apps.command.modules." + class_name, globals(), locals(), [class_name], -1)
+                    module = __import__("cappuccino.apps.command.modules." + class_name, globals(), locals(), [class_name], -1)
                     class_ = getattr(module, class_name)(command)
                     return class_
         else:

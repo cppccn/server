@@ -1,4 +1,4 @@
-from owndrive.apps.command.models import BaseCommand
+from cappuccino.apps.command.models import BaseCommand
 
 
 class ErrorCommand(BaseCommand):

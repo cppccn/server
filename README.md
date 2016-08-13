@@ -78,7 +78,7 @@ pip install -r requirements.txt
 We create a static files directory in order for our server to be able to collect and serve all static resources for login and the web-client:
 
 ```bash
-mkdir -p owndrive/static
+mkdir -p cappuccino/static
 python manage.py collectstatic --no-input
 ```
 
@@ -116,7 +116,7 @@ Finally, we create a superuser in order to be able login through the Web-Client
 python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
 ```
 
-In order to modify personal settings, edit owndrive/local_settings.py file, you can change the Shared Directory Path there (**_/tmp_** by default), the Database used by Django, its name, user and password.
+In order to modify personal settings, edit cappuccino/local_settings.py file, you can change the Shared Directory Path there (**_/tmp_** by default), the Database used by Django, its name, user and password.
 
 ## Run
 

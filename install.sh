@@ -28,8 +28,8 @@ pip install -r requirements-python2.7.txt
 
 # Creating Static Files Directory for django
 echo -e "Creating Static Files Directory ..."
-# TODO: Rename owndrive to cappuccino
-mkdir -p owndrive/static
+# TODO: Rename cappuccino to cappuccino
+mkdir -p cappuccino/static
 
 # Collecting Static Files for serving Web Client Resources
 echo -e "Collecting Static Files ..."
@@ -52,7 +52,7 @@ if [ $1 == "--test" ]
 		mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DATABASE_NAME"	-p$PASSWD
 
 		# Setting Password inside local_settings.py
-		sed -i "s/'PASSWORD': '',/'PASSWORD': '$PASSWD',/g" owndrive/local_settings.py
+		sed -i "s/'PASSWORD': '',/'PASSWORD': '$PASSWD',/g" cappuccino/local_settings.py
 
 		# Making Migrations
 		echo -e "Applying Migrations ..."

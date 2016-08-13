@@ -3,12 +3,12 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.template import Context, Template
-from owndrive import constants
+from cappuccino import constants
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.http import JsonResponse
-from owndrive.local_settings import *
-from owndrive.local_settings import *
+from cappuccino.local_settings import *
+from cappuccino.local_settings import *
 import json
 #from CommandFactory import *
 from django.contrib.auth.mixins import LoginRequiredMixin

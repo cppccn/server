@@ -2,7 +2,7 @@ from os import listdir
 from os.path import isfile, join
 import os
 import time
-from owndrive import constants
+from cappuccino import constants
 
 
 class FileEntry:

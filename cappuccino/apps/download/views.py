@@ -3,11 +3,11 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.template import Context, Template
-from owndrive import constants
+from cappuccino import constants
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.http import JsonResponse
-from owndrive.local_settings import *
+from cappuccino.local_settings import *
 import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
