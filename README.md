@@ -1,8 +1,7 @@
 # cappuccino-server
 
-Web Command Based File Server
-
 [![Build Status](https://travis-ci.org/cappuccino-app/cappuccino-server.svg?branch=master)](https://travis-ci.org/cappuccino-app/cappuccino-server)
+[![Join the chat at https://gitter.im/cappuccino-app/cappuccino-server](https://badges.gitter.im/cappuccino-app/cappuccino-server.svg)](https://gitter.im/cappuccino-app/cappuccino-server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This project, made with **Django** framework, aims to provide the user with an easy and free way to have access to their own files from anywhere in the world, with no fees or storage limit, thanks to self-hosting.
 
