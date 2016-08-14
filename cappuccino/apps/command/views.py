@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from cappuccino.local_settings import *
 from cappuccino.local_settings import *
 import json
-from CommandFactory import *
+#from CommandFactory import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
