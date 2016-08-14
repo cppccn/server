@@ -28,11 +28,10 @@ It provides developers with a basic system architecture that can easily be exten
 
 ### Set up for development purposes
 
-- python 2.7
+- python2.7
 - pip
 - mysql
 - virtualenv
-- source
 
 ## Default Automatic Install
 
@@ -44,8 +43,8 @@ It provides developers with a basic system architecture that can easily be exten
 
 While installing ...
 
-- Insert your MySql Passwd in order for the script to create the database
-- Insert the Password for the admin user automatically created
+- Insert your MySQL passwd in order for the script to create the database
+- Insert the password for the admin user automatically created
 
 ## Manual Installation
 
@@ -73,7 +72,10 @@ mv cappuccino-web-master cappuccino-web
 We install all requirements using **_pip_**
 
 ```bash
-pip install -r requirements.txt
+# Python 2.7
+pip install -r requirements2.7.txt
+# Python 3.5
+pip3 install -r requirements3.5.txt
 ```
 
 We create a static files directory in order for our server to be able to collect and serve all static resources for login and the web-client:
@@ -117,7 +119,7 @@ Finally, we create a superuser in order to be able login through the Web-Client
 python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
 ```
 
-In order to modify personal settings, edit cappuccino/local_settings.py file, you can change the Shared Directory Path there (**_/tmp_** by default), the Database used by Django, its name, user and password.
+In order to modify personal settings, edit `cappuccino/local_settings.py` file, you can change the Shared Directory Path there (`_/tmp_` by default), the Database used by Django, its name, user and password.
 
 ## Run
 
@@ -125,11 +127,7 @@ In order to modify personal settings, edit cappuccino/local_settings.py file, yo
   bash run.sh
 ```
 
-Navigate with your browser to <http://localhost:8000> and login with **_admin_user_** as username using password you just set.
-
-## Architecture
-
-![alt tag](https://i.imgsafe.org/732f8bf199.jpg)
+Navigate with your browser to <http://localhost:8000> and login with `admin_user` as username using password you just set.
 
 ## Functionnalities
 
