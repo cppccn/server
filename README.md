@@ -1,5 +1,7 @@
 # cappuccino-server
 
+<img src="cappuccino.png" width="250" align="right">
+
 [![Build Status](https://travis-ci.org/cappuccino-app/cappuccino-server.svg?branch=master)](https://travis-ci.org/cappuccino-app/cappuccino-server)
 [![Join the chat at https://gitter.im/cappuccino-app/cappuccino-server](https://badges.gitter.im/cappuccino-app/cappuccino-server.svg)](https://gitter.im/cappuccino-app/cappuccino-server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
