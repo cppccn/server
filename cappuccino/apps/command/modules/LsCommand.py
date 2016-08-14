@@ -5,7 +5,6 @@ from os.path import isfile, join
 from cappuccino.apps.command.FileEntry import *
 import shlex
 import subprocess
-from cappuccino.models import CommandHistory
 
 baseDir = constants.SHARED_PATH + "/"
 
