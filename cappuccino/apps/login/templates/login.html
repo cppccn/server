@@ -27,7 +27,7 @@
                 <h2 class="mdl-card__title-text">Cappuccino</h2>
             </div>
             <div class="mdl-card__supporting-text">
-                <form method="post" action="/login">
+                <form method="post" action="/login/">
                     {% csrf_token %}
                     <div class="mdl-textfield mdl-js-textfield">
                         <input name="username" class="mdl-textfield__input" type="text" id="username" />
@@ -37,10 +37,10 @@
                         <input name="password" class="mdl-textfield__input" type="password" id="password" />
                         <label class="mdl-textfield__label" for="password">Password</label>
                     </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="Log in" />
+                    </div>
                 </form>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Log in</button>
             </div>
         </div>
     </main>
