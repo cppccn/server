@@ -28,4 +28,4 @@ class FileView(LoginRequiredMixin, View):
     redirect_field_name = '/'
 
     def get(self, request, *args, **kwargs):
-        return HttpResponse(open(app_path).read())
+        return HttpResponse(open(CLIENT_APP).read())
