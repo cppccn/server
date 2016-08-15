@@ -8,9 +8,8 @@ from django.shortcuts import render_to_response
 from django.template import loader
 from django.http import JsonResponse
 from cappuccino.local_settings import *
-from cappuccino.local_settings import *
 import json
-#from CommandFactory import *
+from CommandFactory import CommandFactory
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 currentDir = "/"
