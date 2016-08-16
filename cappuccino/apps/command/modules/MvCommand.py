@@ -21,9 +21,9 @@ class MvCommand(BaseCommand):
         args = shlex.split(self.full_name)
         proc = ""
         # try:
-        print "BEFORE PROC"
+        print("BEFORE PROC")
         proc = subprocess.check_output(args, cwd=constants.SHARED_PATH)
-        print "PROC : " + proc
+        print("PROC : " + proc)
         # do something with output
         # except subprocess.CalledProcessError:
         # There was an error - command exited with non-zero code

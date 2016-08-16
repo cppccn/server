@@ -17,7 +17,7 @@ class LsCommand(BaseCommand):
     def execute(self, currentDir):
         global baseDir
         currentDir = baseDir + currentDir
-        print "EXECUTE : " + self.full_name
+        print("EXECUTE : " + self.full_name)
         if self.full_name != "ls":
             ls_path = self.full_name.split(" ")[1]
             if ls_path == "..":
@@ -34,8 +34,8 @@ class LsCommand(BaseCommand):
                     currentDir += "/"
 
         # Check if path is allowed!
-        print "Command : " + self.full_name
-        print "Directory : " + currentDir
+        print("Command : " + self.full_name)
+        print("Directory : " + currentDir)
 
         file_list = []
         try:
@@ -51,5 +51,5 @@ class LsCommand(BaseCommand):
             response_dict[i] = entry
             i += 1
 
-        print response_dict
+        print(response_dict)
         return response_dict
