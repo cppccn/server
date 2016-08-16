@@ -97,12 +97,12 @@ We fill up **_local_settings.py_** with missing DATABASE informations:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '[DATABASE_NAME]',                      # Or path to database file if using sqlite3.
+        'NAME': '[DATABASE_NAME]', # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '[DATABASE_USER]',
         'PASSWORD': '[DATABASE_PASSWD]',
-        'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306',                      # Set to empty string for default.
+        'HOST': 'localhost', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306', # Set to empty string for default.
     }
 }
 ```
