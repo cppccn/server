@@ -18,8 +18,8 @@ class LoginView(View):
 
     def post(self, request, *args, **kwargs):
         from django.contrib.auth import authenticate
-        user = authenticate(username=request.POST.get(
-            'username', 'none'), password=request.POST.get('password', 'none'))
+        user = authenticate(username=request.POST.get('username', 'none'),
+                            password=request.POST.get('password', 'none'))
         if user is not None:
             # the password verified for the user
             if user.is_active:

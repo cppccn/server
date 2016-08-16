@@ -8,9 +8,12 @@ class LoginTestCase(TestCase):
 		"""
 		Tests that the user can correctly log in
 		"""
-		user = User.objects.create_superuser(username='testuser', password='12345', email="test-email@gmail.com")
+		user = User.objects.create_superuser(username='testuser',
+											 password='12345',
+											 email="test-email@gmail.com")
 		user.save()
 
 		c = Client()
 		response = c.post('/login/', {'username': 'testuser', 'password': '12345'})
 		self.assertTrue(response.status_code, 200)
+		# TODO: Maybe remove the superuser created?
