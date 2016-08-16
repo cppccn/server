@@ -49,3 +49,17 @@ class CommandView(LoginRequiredMixin, View):
         response = commandObject.execute(currentDir + '/')
 
         return JsonResponse(response, safe="False")
+
+class CommandViewDev(View):
+    def get(self, request, *args, **kwargs):
+        global currentDir
+
+        print("COMANDO: " + request.GET.get('command', 'ls'))
+        currentDir = request.GET.get('currentDir', '/')
+        print("Current DIR : " + currentDir)
+
+        command = request.GET.get('command', 'ls')
+        commandObject = CommandFactory().createCommand(command)
+        response = commandObject.execute(currentDir + '/')
+
+        return JsonResponse(response, safe="False")

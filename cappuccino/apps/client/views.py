@@ -29,3 +29,7 @@ class FileView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         return HttpResponse(open(CLIENT_APP).read())
+
+class FileViewDev(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(open(CLIENT_APP).read())

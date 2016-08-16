@@ -170,3 +170,5 @@ LOGGING = {
 }
 
 LOGIN_URL = local_settings.LOGIN_URL
+
+DEVELOPMENT_MODE = True
