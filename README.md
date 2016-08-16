@@ -69,7 +69,7 @@ unzip master.zip
 mv cappuccino-web-master cappuccino-web
 ```
 
-We install all requirements using **_pip_**
+We install all requirements using **pip**:
 
 ```bash
 # Python 2.7
@@ -85,13 +85,13 @@ mkdir -p cappuccino/static
 python manage.py collectstatic --no-input
 ```
 
-It's now the time to create a database for our server application, which we'll do by using mysql:
+It's now the time to create a database for our server application, which we'll do by using **mysql**:
 
 ```bash
 mysql -u [USERNAME] -e "CREATE DATABASE IF NOT EXISTS [DATABASE_NAME]"
 ```
 
-We fill up **_local_settings.py_** with missing DATABASE informations:
+We fill up `local_settings.py` with missing DATABASE informations:
 
 ```python
 DATABASES = {
