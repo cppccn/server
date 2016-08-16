@@ -9,4 +9,4 @@ class BaseCommand:
         this.name = getName(full_name)
 
     def execute(self):
-        print "executing"
+        print("executing")
