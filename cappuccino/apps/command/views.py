@@ -11,6 +11,7 @@ from cappuccino.local_settings import *
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from cappuccino import constants
+from cappuccino.apps.command import commands
 
 currentDir = "/"
 

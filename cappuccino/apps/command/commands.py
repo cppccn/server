@@ -1,13 +1,19 @@
-from BaseCommand import BaseCommand
 from cappuccino import constants
 from os import listdir
 from os.path import isfile, join
-from cappuccino.apps.command.tools.FileEntry import *
+from cappuccino.apps.command.FileEntry import *
 import shlex
 import subprocess
 
 baseDir = constants.SHARED_PATH + "/"
 
+
+class BaseCommand:
+    def __init__(self, full_name):
+        self.full_name = full_name
+
+    def execute(self, currentDir):
+        return None
 
 class EasyCommand(BaseCommand):
 
