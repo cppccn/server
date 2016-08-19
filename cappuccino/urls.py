@@ -15,7 +15,7 @@ import os
 
 APPS_DIRECTORY = local_settings.PROJECT_ROOT + 'cappuccino/apps'
 
-MODULES_INSTALLED = [module for module in os.listdir(APPS_DIRECTORY) if '.py' not in module]
+MODULES_INSTALLED = [module for module in os.listdir(APPS_DIRECTORY) if '.py' not in module and '__pycache__' not in module]
 
 MODULES_URLS = [url(r'^', include('cappuccino.apps.' + module_name + '.urls')) for module_name in MODULES_INSTALLED]
 
