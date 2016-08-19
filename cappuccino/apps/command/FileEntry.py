@@ -27,10 +27,10 @@ class FileEntry:
 
     def toDict(self):
         size = ""
-        if(self.size > 1024 * 1024):
+        if(int(self.size) > 1024 * 1024):
             self.size = float(self.size) / (1024 * 1024)
             size = str(self.size) + " Mb"
-        elif(self.size > 1024):
+        elif(int(self.size) > 1024):
             self.size = float(self.size) / 1024
             size = str(self.size) + " Kb"
         else:
