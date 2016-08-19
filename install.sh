@@ -62,3 +62,7 @@ if [ $1 == "--test" ]
 		echo -e "Creating Super User for Cappuccino-App ..."
 		python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.com
 fi
+
+# Installing Web Client dependencies
+cd cappuccino-web/cappuccino-web-master
+npm install
