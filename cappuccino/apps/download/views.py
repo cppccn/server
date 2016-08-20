@@ -11,7 +11,9 @@ from cappuccino.local_settings import *
 import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-
+from cappuccino.apps.command.FileEntry import FileEntry
+import os
+from cappuccino import settings
 
 class DownloadView(View):
 
@@ -28,10 +30,14 @@ class DownloadView(View):
         print("FILE TO DOWNLOAD : " + file_path)
 
         from django.utils.encoding import smart_str
+        to_send = FileEntry(file_path)
 
-        response = HttpResponse(content_type='application/octet-stream')
-        response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(command.split(" ")[1])
-        response['X-Sendfile'] = smart_str(file_path)
-        # It's usually a good idea to set the 'Content-Length' header too.
-        # You can also set any other required headers: Cache-Control, etc.
-        return response
+        if not settings.DEVELOPMENT_MODE:
+            response = HttpResponse(content_type='application/octet-stream')
+            response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(command.split(" ")[1])
+            response['Content-Length'] = str(to_send.size)
+            response['X-Sendfile'] = smart_str(file_path)
+            return response
+        else: # DEVELOPMENT_MODE here
+            from django.views.static import serve
+            return serve(request, os.path.basename(file_path), os.path.dirname(file_path))
