@@ -28,5 +28,7 @@ $http.get("/command/", {
 
 The above mentioned command will force your browser to have the user choose wether to download or open `filename.txt` which is supposed to be in `currentDir` directory.
 
-or by using `curl` utility:
-coming soon ...
+or by using `wget` utility:
+```bash
+wget "http://localhost:8000/download/?command=dw mattia&currentDir=/" -O output_file
+```
