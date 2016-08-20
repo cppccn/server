@@ -6,8 +6,7 @@
 | ----------- |:-------------:|
 | URL      | `/command/`        |
 | Method   |           GET      |
-| Url Params | None
-| Data Params | ***command[:STRING]***, ***currentDir[:STRING]***      |
+| Url Params | ***command(STRING)***, ***currentDir(STRING)***      |
 
 ## Success Response
 
@@ -32,4 +31,9 @@ $http.get("/command/", {
             "currentDir": "/",
         }
     }).success(callback).error(callback); |
+```
+
+or by using `curl` utility:
+```bash
+curl 'http://localhost:8000/command=ls&currentDir=/'
 ```
