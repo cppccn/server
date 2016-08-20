@@ -1,6 +1,4 @@
-# API Specification
-
-## Resumé
+## /command/ EntryPoint
 
 | Information | Value |
 | ----------- |:-------------:|
@@ -8,7 +6,7 @@
 | Method   |           GET      |
 | Url Params | ***command(STRING)***, ***currentDir(STRING)***      |
 
-## Success Response
+### Success Response
 
 ```python
 {
@@ -17,12 +15,12 @@
   3: {'last_modified': 'Mon Aug 15 12:53:31 2016', 'type': 'file', 'name': u'.X0-lock', 'size': '11 b'}
 }
 ```         
-## Error Response
+### Error Response
 ```json
 {"type": "1", "message": "Path not correct, file does not exist"}           |
 ```
 
-## Sample Call
+### Sample Call
 
 ```javascript
 $http.get("/command/", {
