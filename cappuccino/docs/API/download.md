@@ -20,11 +20,13 @@ coming soon ...
 ```javascript
 $http.get("/command/", {
         params: {
-            "command": "dw mattia",
+            "command": "dw filename.txt",
             "currentDir": "/",
         }
     }).success(callback).error(callback); |
 ```
+
+The above mentioned command will force your browser to have the user choose wether to download or open `filename.txt` which is supposed to be in `currentDir` directory.
 
 or by using `curl` utility:
 coming soon ...
