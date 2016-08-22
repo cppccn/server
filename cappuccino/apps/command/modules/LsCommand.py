@@ -12,7 +12,8 @@ class LsCommand(BaseCommand):
     def __init__(self, full_name):
         self.full_name = full_name
 
-    def parentDir(currentDir):
+    def parentDir(self, currentDir):
+        print("CurrentDir inside parentDir :  " + currentDir)
         if currentDir != local_settings.SHARED_PATH:
             hierarchy = currentDir.split("/")
             hierarchy.pop()
@@ -20,6 +21,7 @@ class LsCommand(BaseCommand):
             currentDir = "/".join(hierarchy)
             if not currentDir.endswith("/"):
                 currentDir += "/"
+        return None
 
     def execute(self, currentDir):
         """
@@ -44,12 +46,13 @@ class LsCommand(BaseCommand):
             path = local_settings.SHARED_PATH + currentDir
         else: # Case with arguments
             if self.full_name == "ls ..": # Case go back to parent
-                if currentDir != '/':
-                    path =  local_settings.SHARED_PATH + '/' + self.parentDir(currentDir)
+                parentDir = self.parentDir(currentDir)
+                if parentDir:
+                    path =  local_settings.SHARED_PATH + parentDir
                 else:
-                    path = local_settings.SHARED_PATH + '/'
+                    path = local_settings.SHARED_PATH
             else: # Case ls path
-                path = local_settings.SHARED_PATH + '/' + self.full_name.split(' ')[1]
+                path = local_settings.SHARED_PATH + self.full_name.split(' ')[1]
 
         print("Ls System Path: " + path)
         ls_result = []
