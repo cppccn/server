@@ -25,7 +25,8 @@ class CommandTestCase(TestCase):
 		return response
 
 	def tearDown(self):
-		shutil.rmtree(self.SYSTEM_PATH_TEST_DIR)
+		if not os.path.exists(self.SYSTEM_PATH_TEST_DIR):
+			shutil.rmtree(self.SYSTEM_PATH_TEST_DIR)
 
 
 class LsCommandTestCase(CommandTestCase):
@@ -83,7 +84,22 @@ class LsCommandTestCase(CommandTestCase):
 			filename = str(i) + '.txt'
 			self.assertTrue(True if filename in filenames else False, True)
 
+	def test_ls_current_path(self):
+		# Making ls request and checking response code
+		params = CommandParams('ls', '/').toDict()
+		response = super(LsCommandTestCase, self).sendCommandRequest(params)
+		self.assertTrue(response.status_code, 200)
+
+		# Executing 'ls' from the root, or an 'ls ..' from one level subdir, should give the same response
+		params = CommandParams('ls .', '/').toDict()
+		response_back = super(LsCommandTestCase, self).sendCommandRequest(params)
+		self.assertTrue(response_back.status_code, 200)
+
+		self.assertTrue(response, response_back)
+
 	def tearDown(self):
+		super(LsCommandTestCase, self).tearDown()
+
 		# tearDown -> test_ls_no_args
 		for i in range(0, 5):
 			os.remove(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + str(i) + '.txt')
