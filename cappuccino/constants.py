@@ -1,4 +1,4 @@
 from cappuccino import local_settings
 
 SHARED_PATH = local_settings.SHARED_PATH
-ALLOWED_COMMANDS = ["ls", "cp", "mv", "dw", "up"]
+ALLOWED_COMMANDS = ["ls", "cp", "mv", "dw", "up", "cd"]
