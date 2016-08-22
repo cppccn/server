@@ -6,16 +6,14 @@ from cappuccino.apps.command.FileEntry import *
 from cappuccino.apps.command.CommandResponse import *
 import shlex
 import subprocess
-
-baseDir = constants.SHARED_PATH + "/"
+from cappuccino import local_settings
 
 class LsCommand(BaseCommand):
-
     def __init__(self, full_name):
         self.full_name = full_name
 
-    def parentDir(currentDir, baseDir):
-        if currentDir != baseDir:
+    def parentDir(currentDir):
+        if currentDir != local_settings.SHARED_PATH:
             hierarchy = currentDir.split("/")
             hierarchy.pop()
             hierarchy.pop()
@@ -24,14 +22,11 @@ class LsCommand(BaseCommand):
                 currentDir += "/"
 
     def execute(self, currentDir):
-        global baseDir
-        currentDir = baseDir + currentDir
-
         """
         if self.full_name != "ls":
             ls_path = self.full_name.split(" ")[1]
             if ls_path == "..":
-                self.parentDir(currentDir, baseDir)
+                self.parentDir(currentDir, local_settings.SHARED_PATH)
             else:
                 currentDir += ls_path
                 if not currentDir.endswith("/"):
@@ -42,12 +37,28 @@ class LsCommand(BaseCommand):
         print("Directory : " + currentDir)
 
         # Sending a list of json FileEntry objects
-        ls_result = []
-        try:
-            for entry in listdir(currentDir):
-                file_entry = FileEntry(currentDir + "/" + entry)
-                ls_result += [file_entry.toDict()]
-        except:
-            return CommandReponse(False, "Path not correct, file does not exist")
+        return self.ls(currentDir)
 
+    def ls(self, currentDir):
+        if self.full_name == "ls": # Case no arguments
+            path = local_settings.SHARED_PATH + currentDir
+        else: # Case with arguments
+            if self.full_name == "ls ..": # Case go back to parent
+                if currentDir != '/':
+                    path =  local_settings.SHARED_PATH + '/' + self.parentDir(currentDir)
+                else:
+                    path = local_settings.SHARED_PATH + '/'
+            else: # Case ls path
+                path = local_settings.SHARED_PATH + '/' + self.full_name.split(' ')[1]
+
+        print("Ls System Path: " + path)
+        ls_result = []
+#        try:
+        for entry in listdir(path):
+            file_entry = FileEntry(path + "/" + entry)
+            ls_result += [file_entry.toDict()]
+#        except:
+#            return CommandResponse(False, "Path not correct, file does not exist")
+
+        print("Ls Results: " + ls_result.__str__())
         return CommandResponse(True, ls_result)
