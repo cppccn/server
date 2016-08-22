@@ -4,6 +4,7 @@ from django.test import Client
 from django.contrib.auth.models import User
 from cappuccino import local_settings
 import os
+import json
 
 class LsCommandTestCase(TestCase):
 	def setUp(self):
@@ -25,17 +26,26 @@ class LsCommandTestCase(TestCase):
 		self.assertTrue(response.status_code, 200)
 		
 		# Test all created files are there
-		files = response.json()['data']
-		filenames = [f['name'] for f in files]
-		print filenames
+		files_json = response.json()['data']
+		print("File Json: ")
+		print(files_json)
+
+		#files_dict = json.loads(files_json)
+		filenames = [f['name'] for f in files_json]
+		print(filenames)
 
 		# Check setUp files info retrieved
 		dirname = self.FILE_PREFIX +'dir'
 		self.assertTrue(dirname in filenames, True)
 
+
 		for i in range(0, 5):
 			filename = self.FILE_PREFIX + str(i) + '.txt'
 			self.assertTrue(True if filename in filenames else False, True)
+
+	def tearDown(self):
+		print("TearDown method called")
+		dirname = self.FILE_PREFIX +'dir'
 
 		# Clean up
 		for i in range(0, 5):
