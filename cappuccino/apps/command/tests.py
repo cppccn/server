@@ -3,51 +3,69 @@ import logging
 from django.test import Client
 from django.contrib.auth.models import User
 from cappuccino import local_settings
+from cappuccino.apps.command.commands import CommandParams
 import os
 import json
+import shutil
 
-class LsCommandTestCase(TestCase):
+class CommandTestCase(TestCase):
 	def setUp(self):
-		self.TEST_DIR = local_settings.SHARED_PATH + '/lscommand-test-dir'
-		self.FILE_PREFIX = 'lscommand-test-'
+		self.TEST_DIRNAME = '_command-test-directory'
+		self.SYSTEM_PATH_TEST_DIR = local_settings.SHARED_PATH + self.TEST_DIRNAME
 
 		# Creating test dir
-		if not os.path.exists(self.TEST_DIR):
-		    os.makedirs(self.TEST_DIR)
+		if not os.path.exists(self.SYSTEM_PATH_TEST_DIR):
+		    os.makedirs(self.SYSTEM_PATH_TEST_DIR)
 
-		# Creating 5 files inside named 1.txt to 5.txt
-		for i in range(0,5):
-			open(local_settings.SHARED_PATH + '/' + self.FILE_PREFIX + str(i) + '.txt', 'w')
+	# Retrieves the Response object to the CommandRequest
+	def sendCommandRequest(self, params):
+		# Making ls request and checking response code
+		c = Client()
+		response = c.get('/command/', params)
+		return response
+
+	def tearDown(self):
+		shutil.rmtree(self.SYSTEM_PATH_TEST_DIR)
+
+
+class LsCommandTestCase(CommandTestCase):
+	def setUp(self):
+		super(LsCommandTestCase, self).setUp()
+		# setUp -> test_ls_no_args
+		for i in range(0,5): # Creating 5 files in SHARED_PATH named PREFIX1.txt to PREFIX5.txt
+			open(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + str(i) + '.txt', 'w')
 
 	def test_ls_no_args(self):
 		# Making ls request and checking response code
-		c = Client()
-		response = c.get('/command/', {'command': 'ls', 'currentDir': '/'})
+		params = CommandParams('ls', '/').toDict()
+		response = super(LsCommandTestCase, self).sendCommandRequest(params)
 		self.assertTrue(response.status_code, 200)
 		
 		# Test all created files are there
 		files_json = response.json()['data']
-		print("File Json: ")
-		print(files_json)
-
-		#files_dict = json.loads(files_json)
 		filenames = [f['name'] for f in files_json]
-		print(filenames)
-
-		# Check setUp files info retrieved
-		dirname = self.FILE_PREFIX +'dir'
-		self.assertTrue(dirname in filenames, True)
-
+		self.assertTrue(self.TEST_DIRNAME in filenames, True)
 
 		for i in range(0, 5):
-			filename = self.FILE_PREFIX + str(i) + '.txt'
+			filename = self.TEST_DIRNAME + str(i) + '.txt'
 			self.assertTrue(True if filename in filenames else False, True)
 
-	def tearDown(self):
-		print("TearDown method called")
-		dirname = self.FILE_PREFIX +'dir'
+	def test_ls_parent_dir(self):
+		# Making ls request and checking response code
+		params = CommandParams('ls', '/').toDict()
+		response = super(LsCommandTestCase, self).sendCommandRequest(params)
+		self.assertTrue(response.status_code, 200)
 
-		# Clean up
+		print(response)
+		# Executing 'ls' from the root, or an 'ls ..' from one level subdir, should give the same response
+		params = CommandParams('ls ..', self.SYSTEM_PATH_TEST_DIR).toDict()
+		response_back = super(LsCommandTestCase, self).sendCommandRequest(params)
+		self.assertTrue(response_back.status_code, 200)
+		print(response_back)
+
+		self.assertTrue(response, response_back)
+
+	def tearDown(self):
+		# tearDown -> test_ls_no_args
 		for i in range(0, 5):
-			os.remove(local_settings.SHARED_PATH + '/' + self.FILE_PREFIX + str(i) + '.txt')
-		os.rmdir(local_settings.SHARED_PATH + '/' + dirname)
+			os.remove(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + str(i) + '.txt')
