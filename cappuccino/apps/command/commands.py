@@ -7,6 +7,14 @@ import subprocess
 
 baseDir = constants.SHARED_PATH + "/"
 
+class CommandParams:
+    def __init__(self, command, currentDir):
+        self.API_ENTRY_POINT = '/command/'
+        self.command = command
+        self.currentDir = currentDir
+
+    def toDict(self):
+        return { 'command': self.command, 'currentDir': self.currentDir }
 
 class BaseCommand:
     def __init__(self, full_name):
