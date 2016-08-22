@@ -24,25 +24,11 @@ class LsCommand(BaseCommand):
         return None
 
     def execute(self, currentDir):
-        """
-        if self.full_name != "ls":
-            ls_path = self.full_name.split(" ")[1]
-            if ls_path == "..":
-                self.parentDir(currentDir, local_settings.SHARED_PATH)
-            else:
-                currentDir += ls_path
-                if not currentDir.endswith("/"):
-                    currentDir += "/"
-        """
-        # Check if path is allowed!
-        print("Command : " + self.full_name)
-        print("Directory : " + currentDir)
-
         # Sending a list of json FileEntry objects
         return self.ls(currentDir)
 
     def ls(self, currentDir):
-        if self.full_name == "ls": # Case no arguments
+        if self.full_name == "ls" or self.full_name == "ls .": # Case no arguments
             path = local_settings.SHARED_PATH + currentDir
         else: # Case with arguments
             if self.full_name == "ls ..": # Case go back to parent
@@ -54,14 +40,9 @@ class LsCommand(BaseCommand):
             else: # Case ls path
                 path = local_settings.SHARED_PATH + self.full_name.split(' ')[1]
 
-        print("Ls System Path: " + path)
         ls_result = []
-#        try:
         for entry in listdir(path):
             file_entry = FileEntry(path + "/" + entry)
             ls_result += [file_entry.toDict()]
-#        except:
-#            return CommandResponse(False, "Path not correct, file does not exist")
 
-        print("Ls Results: " + ls_result.__str__())
         return CommandResponse(True, ls_result)
