@@ -130,7 +130,7 @@ count_pdf dirname
 ```
 
 - add a `Count_pdfCommand.py` file into `modules` directory
-- declare `Count_pdfCommand` class inside it
+- declare `Count_pdfCommand` class inside it (First char needs to be `uppercase`)
 - the above mentioned class needs to inherit from `BaseCommand` class
 - overright the `execute()` method
 - the `execute()` method must return a `CommandResponse` object
