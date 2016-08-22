@@ -35,6 +35,10 @@ class LsCommandTestCase(CommandTestCase):
 		for i in range(0,5): # Creating 5 files in SHARED_PATH named PREFIX1.txt to PREFIX5.txt
 			open(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + str(i) + '.txt', 'w')
 
+		# setUp -> test_ls_path
+		for i in range(0,5): # Creating 5 files in SHARED_PATH named PREFIX1.txt to PREFIX5.txt
+			open(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + '/' + str(i) + '.txt', 'w')
+
 	def test_ls_no_args(self):
 		# Making ls request and checking response code
 		params = CommandParams('ls', '/').toDict()
@@ -65,7 +69,25 @@ class LsCommandTestCase(CommandTestCase):
 
 		self.assertTrue(response, response_back)
 
+	def test_ls_path(self):
+		# Making ls request and checking response code
+		params = CommandParams('ls', '/' + self.TEST_DIRNAME).toDict()
+		response = super(LsCommandTestCase, self).sendCommandRequest(params)
+		self.assertTrue(response.status_code, 200)
+
+		# Test all created files are there
+		files_json = response.json()['data']
+		filenames = [f['name'] for f in files_json]
+
+		for i in range(0, 5):
+			filename = str(i) + '.txt'
+			self.assertTrue(True if filename in filenames else False, True)
+
 	def tearDown(self):
 		# tearDown -> test_ls_no_args
 		for i in range(0, 5):
 			os.remove(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + str(i) + '.txt')
+
+		# tearDown -> test_ls_path
+		for i in range(0, 5):
+			os.remove(local_settings.SHARED_PATH + '/' + self.TEST_DIRNAME + '/' + str(i) + '.txt')
