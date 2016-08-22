@@ -18,7 +18,7 @@
 }
 ```         
 ### Error Response
-```json
+```python
 {'type': false, 'data': "Path not correct, file does not exist"}           |
 ```
 
