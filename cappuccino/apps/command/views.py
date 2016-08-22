@@ -61,6 +61,5 @@ class CommandViewDev(View):
 
         command = request.GET.get('command', 'ls')
         commandObject = CommandFactory().createCommand(command)
-        response = commandObject.execute(currentDir + '/')
-
-        return JsonResponse(response, safe="False")
+        response = commandObject.execute(currentDir)
+        return response.jsonResponse()
