@@ -77,4 +77,4 @@ DATABASES = {
 
 LOGIN_URL = '/login/'
 
-SHARED_PATH = "/tmp"
+SHARED_PATH = "~/"
