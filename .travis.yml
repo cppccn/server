@@ -4,6 +4,7 @@ python:
   - 3.5
 script:
   - ./install.sh --test
+  - python manage.py test
 notifications:
   webhooks:
     urls:
