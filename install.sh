@@ -68,4 +68,5 @@ fi
 cd cappuccino-web/cappuccino-web-master
 
 # TODO: use requierements
+npm install bower
 npm install
