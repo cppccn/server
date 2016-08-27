@@ -18,4 +18,4 @@ class ClientTestCase(TestCase):
 
 		# Checks that we have access to the main page of our web client
 		response = c.get('/')
-		self.assertTrue('<html ng-app="cappuccinoWebClient">' in response._container[0])
+		self.assertTrue(b'<html ng-app="cappuccinoWebClient">' in response._container[0])
