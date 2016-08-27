@@ -65,6 +65,6 @@ if [ $1 == "--test" ]
 fi
 
 # Installing Web Client dependencies
-cd MattiaPrimavera/cappuccino-web-master
+cd cappuccino-web/cappuccino-web-master
 
 npm install
