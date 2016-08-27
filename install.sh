@@ -17,13 +17,14 @@ source env/bin/activate
 # Installing Web Client
 # TODO: Ugly.. maybe a git submodule could be a good idea
 echo -e "Cloning Cappuccino-Web ..."
-#git clone git@github.com:cappuccino-app/cappuccino-web.git
+# TODO: git clone git@github.com:cappuccino-app/cappuccino-web.git
 wget https://github.com/cappuccino-app/cappuccino-web/archive/master.zip
 unzip master.zip
 mv cappuccino-web-master cappuccino-web
 
 # Installing Django pip requirements
 echo -e "Installing PIP requirements ..."
+# TODO: detect which version of Python is running
 pip install -r requirements-python3.5.txt
 
 # Creating Static Files Directory for django
@@ -65,4 +66,6 @@ fi
 
 # Installing Web Client dependencies
 cd cappuccino-web/cappuccino-web-master
+
+# TODO: use requierements
 npm install
