@@ -67,5 +67,4 @@ fi
 # Installing Web Client dependencies
 cd cappuccino-web/cappuccino-web-master
 
-# TODO: use requierements
 npm install
