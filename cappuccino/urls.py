@@ -3,7 +3,7 @@
 from django.contrib import admin
 admin.autodiscover()
 
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from cappuccino import settings
 from cappuccino import local_settings
