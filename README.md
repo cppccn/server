@@ -36,17 +36,18 @@ Navigate with your browser to <http://localhost:8000> and login with `admin_user
 - [ ] File Versioning with Git
 
 ## Architecture
-Basically by having this Django server run on a machine (for instance your Raspberry Pi at home), you can easily have access to your files from outside your place through a simple API, with a cross-platform mobile application running the client, or through a browser by navigating to your Raspberry Pi IP address, which directly serves the web-client as an AngularJS singe page web app.
+Basically by having this Django server run on a machine (for instance your Raspberry Pi at home), you can easily have access to your files from outside your place through a simple API, with a cross-platform mobile application running the client, or through a browser by navigating to your Raspberry Pi IP address, which directly serves the web-client as an AngularJS single page web app.
 
-By implementing this project mostly as a REST API, and the client as a separate web project which makes use of the API, I could wrote the client only once for both the web and mobile app (thanks to cross-platform frameworks like [Ionic](https://ionicframework.com/)).
+By implementing this project mostly as a REST API, and the client as a separate web project which makes use of the API, I could write the client only once for both the web and mobile app (thanks to cross-platform frameworks like [Ionic](https://ionicframework.com/)).
 Further more, other people could choose to use the server code if they like, while re-writing the client with no need of modifying the server code, if respecting the API contract.
 
-I tried to achieve the maximum modularity to make the software easily extendable: Django **apps** separate concerns of main functionalities while a possibly illimited series of **Shell** commands have been written as python modules that are dynamically loaded at runtime based on their file name, which is automatically deduced by the command name (to add a module, you only need adding a **.py** file, respecting a few constraints a a little rule for the module file name).
+I tried to make the software the most easily extensible that was possible by exploiting modularity:
+- Django **apps** separate concerns of main functionalities
+- a possibly illimited series of **Shell** commands have been written as python separated "pluggable" modules (the software does not have conscience of the presence of each one of those, which are dinamically loaded at runtime: to add a module, you only need adding a **.py** file, respecting a few constraints and a little rule for the module file name).
 
 ## History
 
-I wanted to have a customizable system to have access to my own files from outside home, but looking on the net I only found an old versioned django server or Server and Clients with too big dependencies to make the effort of rewriting my own client.
-
+I wanted to have a customizable system to have access to my own files from outside home, but looking on the internet I only found an old versioned Django server or web-clients with too big dependencies that I preferred to make my own project.
 
 ## Requirements
 
