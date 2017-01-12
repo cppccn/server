@@ -14,6 +14,40 @@ It provides developers with a basic system architecture that can easily be exten
 - No dependencies Client-Server, the API contract allows communication
 - Web based to maximize portability (no need of bringing the client software with you ... )
 
+## Run
+
+```bash
+  bash run.sh
+```
+
+Navigate with your browser to <http://localhost:8000> and login with `admin_user` as username using password you just set.
+
+## Functionalities
+- [X] Login
+- [X] Web Interface (AngularJS app)
+- [X] Shell Commands (File System and Utilities)
+- [X] Download
+- [X] Upload
+- [X] Video Streaming
+- [ ] End-to-end Encryption
+- [ ] Download Delegation to Server of file / torrent
+- [X] Easy to install and self-hosted
+- [ ] Filters and Regex for searching Files
+- [ ] File Versioning with Git
+
+## Architecture
+Basically by having this Django server run on a machine (for instance your Raspberry Pi at home), you can easily have access to your files from outside your place through a simple API, with a cross-platform mobile application running the client, or through a browser by navigating to your Raspberry Pi IP address, which directly serves the web-client as an AngularJS singe page web app.
+
+By implementing this project mostly as a REST API, and the client as a separate web project which makes use of the API, I could wrote the client only once for both the web and mobile app (thanks to cross-platform frameworks like [Ionic](https://ionicframework.com/)).
+Further more, other people could choose to use the server code if they like, while re-writing the client with no need of modifying the server code, if respecting the API contract.
+
+I tried to achieve the maximum modularity to make the software easily extendable: Django **apps** separate concerns of main functionalities while a possibly illimited series of **Shell** commands have been written as python modules that are dynamically loaded at runtime based on their file name, which is automatically deduced by the command name (to add a module, you only need adding a **.py** file, respecting a few constraints a a little rule for the module file name).
+
+## History
+
+I wanted to have a customizable system to have access to my own files from outside home, but looking on the net I only found an old versioned django server or Server and Clients with too big dependencies to make the effort of rewriting my own client.
+
+
 ## Requirements
 
 - a computer switched on
@@ -121,28 +155,3 @@ python manage.py createsuperuser --username=admin_user --email=admin@cappuccino.
 ```
 
 In order to modify personal settings, edit `cappuccino/local_settings.py` file, you can change the Shared Directory Path there (`_/tmp_` by default), the Database used by Django, its name, user and password.
-
-## Run
-
-```bash
-  bash run.sh
-```
-
-Navigate with your browser to <http://localhost:8000> and login with `admin_user` as username using password you just set.
-
-## Functionnalities
-
-- Web Interface
-- Shell Commands (File System and Utilities)
-- Download
-- Upload
-- Stream
-- End-to-end Encryption
-- Download Delegation to Server of file / torrent
-- Easy to install and self-hosted
-- Filters and Regex for searching Files
-- File Versioning with Git
-
-## History
-
-I wanted to have a customizable system to have access to my own files from outside home, but looking on the net I only found an old versioned django server or Server and Clients with too big dependencies to make the effort of rewriting my own client.
