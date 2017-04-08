@@ -1,0 +1,9 @@
+{
+  "name": "cappucino",
+  "version": "0.0.0",
+  "description": "Cappucino",
+  "main": "app.js",
+  "author": {
+    "name": "yvans"
+  }
+}
