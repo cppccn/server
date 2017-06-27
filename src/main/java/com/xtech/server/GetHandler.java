@@ -12,7 +12,7 @@ public class GetHandler {
     public static final String ROOT_PAGE = "/";
     public static final String APP_FILE = "/sample.html";
 
-    public static NanoHTTPD.Response handleGet(NanoHTTPD.IHTTPSession session) {
+    public NanoHTTPD.Response handleGet(NanoHTTPD.IHTTPSession session) {
         String uri = session.getUri();
         File file;
         if(uri.equals(ROOT_PAGE)) {
