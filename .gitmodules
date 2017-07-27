@@ -1,0 +1,3 @@
+[submodule "src/assets/client"]
+       path = src/assets/client
+       url = https://github.com/yvan-sraka/easymove-client
