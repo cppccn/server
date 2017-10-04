@@ -1,6 +1,9 @@
 # IDE
 .idea
 
+# Builds
+dist/
+
 # Logs
 logs
 *.log
@@ -59,4 +62,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
