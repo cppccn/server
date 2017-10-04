@@ -1,4 +1,7 @@
-# IDE
+# npm
+package-lock.json
+
+# IntellijIDEA
 .idea
 
 # Builds
