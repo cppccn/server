@@ -10,7 +10,7 @@ const isDirectory = source => lstatSync(source).isDirectory()
 const getDirectoryContent = source =>
   readdirSync(source).map(name => join(source, name))
 
-// Creates and configures an ExpressJS web server.
+// Creates and configures an ExpressJS web server
 class App {
 
     // ref to Express instance
@@ -28,6 +28,11 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(function(req, res, next) {
+          res.header("Access-Control-Allow-Origin", "*");
+          res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+          next();
+        });
     }
 
     // Configure API endpoints.
