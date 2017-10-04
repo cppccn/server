@@ -29,9 +29,9 @@ class App {
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
     this.express.use((req, res, next) => {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers",
-                 "Origin, X-Requested-With, Content-Type, Accept");
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers',
+                 'Origin, X-Requested-With, Content-Type, Accept');
       next();
     });
   }
@@ -43,8 +43,8 @@ class App {
      * API endpoints */
     let router = express.Router();
     // placeholder route handler
-    router.get('/', (req, res, next) => {
-      res.json(getDirectoryContent("/home/yvan")
+    router.get('/*', (req, res, next) => {
+      res.json(getDirectoryContent(`/${req.param('0') || ''}`)
                .map(path => ({ path, isDirectory: isDirectory(path) })));
     });
     this.express.use('/', router);
