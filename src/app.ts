@@ -44,7 +44,7 @@ class App {
     let router = express.Router();
     // placeholder route handler
     router.get('/*', (req, res, next) => {
-      res.json(getDirectoryContent(`/${req.param('0') || ''}`)
+      res.json(getDirectoryContent(`./${req.param('0') || ''}`)
                .map(path => ({ path, isDirectory: isDirectory(path) })));
     });
     this.express.use('/', router);
