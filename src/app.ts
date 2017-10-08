@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
@@ -7,8 +6,15 @@ const { lstatSync, readdirSync } = require('fs')
 const { join } = require('path')
 
 const isDirectory = source => lstatSync(source).isDirectory()
-const getDirectoryContent = source =>
-  readdirSync(source).map(name => join(source, name))
+const getDirectoryContent = source => {
+  var content
+  try {
+    content = readdirSync(source)
+    return Promise.resolve(content.map(name => join(source, name)))
+  } catch(err) {
+    return Promise.reject({ status: 404, msg: 'Required path not found' })
+  }
+}
 
 // Creates and configures an ExpressJS web server
 class App {
@@ -42,14 +48,22 @@ class App {
      * working so far. This function will change when we start to add more
      * API endpoints */
     let router = express.Router();
+
     // placeholder route handler
     router.get('/*', (req, res, next) => {
-      res.json(getDirectoryContent(`./${req.param('0') || ''}`)
-               .map(path => ({ path, isDirectory: isDirectory(path) })));
+      getDirectoryContent(`./${req.param('0') || ''}`)
+        .then(result => {
+          res.json(result.map(path => ({ path, isDirectory: isDirectory(path) })));
+        }).catch(err => {
+          this.onError(err, res);
+        })
     });
     this.express.use('/', router);
   }
 
+  private onError(err, res) : void {
+    res.status(err.status).json(err)
+  }
 }
 
 export default new App().express;
