@@ -2,18 +2,46 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 
-const { lstatSync, readdirSync } = require('fs')
+const { lstatSync, readdirSync, readFile } = require('fs')
 const { join } = require('path')
 
-const isDirectory = source => lstatSync(source).isDirectory()
+const ENCODING = 'utf8'
+const errors = {
+  PATH_NOT_FOUND: 'Requested path not found'
+}
+
+const isDirectory = source => {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(lstatSync(source).isDirectory())
+    } catch(err) {
+      reject({ status: 404, err: errors.PATH_NOT_FOUND})
+    }
+  })
+}
+
+const getFileContent = source => {
+  return new Promise((resolve, reject) => {
+    readFile(source, ENCODING, function (err,data) {
+      if (err) {
+        reject(err)
+      }
+
+      resolve(data)
+    });
+  })
+}
+
 const getDirectoryContent = source => {
-  var content
-  try {
-    content = readdirSync(source)
-    return Promise.resolve(content.map(name => join(source, name)))
-  } catch(err) {
-    return Promise.reject({ status: 404, msg: 'Required path not found' })
-  }
+  return new Promise((resolve, reject) => {
+    var content
+    try {
+      content = readdirSync(source)
+      resolve(content.map(name => join(source, name)))
+    } catch(err) {
+      reject({ status: 404, msg: errors.PATH_NOT_FOUND })
+    }
+  })
 }
 
 // Creates and configures an ExpressJS web server
@@ -51,12 +79,23 @@ class App {
 
     // placeholder route handler
     router.get('/*', (req, res, next) => {
-      getDirectoryContent(`./${req.param('0') || ''}`)
-        .then(result => {
-          res.json(result.map(path => ({ path, isDirectory: isDirectory(path) })));
-        }).catch(err => {
-          this.onError(err, res);
-        })
+      let path = `./${req.param('0') || ''}`
+
+      isDirectory(path)
+        .then(isdir => {
+          if(isdir) {
+            return getDirectoryContent(path)
+              .then(result => result.map(path => ({ path, isDirectory: isdir })))
+              .then(result => res.status(200).json(result))
+              .catch(error => console.log('Error reading directory: ' + JSON.stringify(error)))
+          } else {
+            return getFileContent(path)
+              .then(content => {
+                res.header('Content-Type', 'text/plain')
+                res.send(content)
+              }).catch(err => console.log('Error reading file: ' + JSON.stringify(err)))
+          }
+        }).catch(err => this.onError(err, res))
     });
     this.express.use('/', router);
   }
