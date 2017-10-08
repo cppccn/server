@@ -30,6 +30,7 @@
     "chai-http": "^3.0.0",
     "mocha": "^4.0.0",
     "nodemon": "^1.12.1",
+    "typedoc": "^0.9.0",
     "typescript": "^2.5.3"
   }
 }
