@@ -26,6 +26,6 @@ $ npm start
 
 Examples:
 
-`GET` http://localhost:3000/dist -> `ls` a directory
-`GET` http://localhost:3000/LICENSE -> download/show a text file
-`DELETE` http://localhost:3000/.gitignore -> `rm .gitignore`
+* `GET` http://localhost:3000/dist -> `ls` a directory
+* `GET` http://localhost:3000/LICENSE -> download/show a text file
+* `DELETE` http://localhost:3000/.gitignore -> `rm .gitignore`
