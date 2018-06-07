@@ -6,7 +6,7 @@
 
 ## Motivations
 
-This minimalist web server try to solve the issue of https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http as alternate solution of the unmaintained https://github.com/indexzero/http-server but the same API schema!
+This minimalist web server try to solve the issue of https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http as alternate solution of the unmaintained https://github.com/indexzero/http-server but with the same API schema!
 
 ## Setup
 
