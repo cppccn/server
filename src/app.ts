@@ -85,7 +85,10 @@ class App {
         .then(isdir => {
           if(isdir) {
             return getDirectoryContent(path)
-              .then(result => result.map(path => ({ path, isDirectory: isdir })))
+              .then((result: Array<any>) => {
+                let filePromise = isDirectory(path).then(isdir => new Object({ path: path, isDirectory: isdir }));
+                return result.map(path => filePromise);
+              }).then(result => Promise.all(result))
               .then(result => res.status(200).json(result))
               .catch(error => console.log('Error reading directory: ' + JSON.stringify(error)))
           } else {
