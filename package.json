@@ -18,6 +18,7 @@
     "@types/morgan": "^1.7.33",
     "@types/node": "^8.0.32",
     "body-parser": "^1.18.2",
+    "child_process": "^1.0.2",
     "express": "^4.16.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.2",

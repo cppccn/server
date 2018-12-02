@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import { Constants } from './constants';
+import * as Shell from './shell';
 
 const { lstatSync, readdirSync, readFile } = require('fs')
 const { join } = require('path')
@@ -99,6 +100,22 @@ class App {
         }).catch(err => this.onError(err, res))
     });
     this.express.use('/', router);
+
+    // 'mv' & 'cp' commands
+    router.post('/*', (req, res, next) => {
+      let path = `./${req.param('0') || ''}`
+      let cmd = req.body.cmd;
+      let dest = req.body.dest;
+      let command = `${cmd} ${path} ${dest}`;
+      console.log('Command to run: ' + command);
+      Shell.isEnabled(command)
+        .then(() => Shell.execSh(command))
+        .then((stdout) => {
+          res.send(true);
+        }).catch(err => {
+          res.status(500).send(err);
+        });
+    });
   }
 
   private onError(err, res) : void {
