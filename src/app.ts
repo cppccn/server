@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-
+import * as fs from 'fs';
 const { lstatSync, readdirSync, readFile } = require('fs')
 const { join } = require('path')
 
@@ -91,8 +91,14 @@ class App {
           } else {
             return getFileContent(path)
               .then(content => {
-                res.header('Content-Type', 'text/plain')
-                res.send(content)
+                if(path.endsWith('.jpg')) {
+                  var fileStream = fs.createReadStream(path);
+                  res.writeHead(200, {"Content-Type": "image/jpg"});
+                  fileStream.pipe(res);
+                } else {
+                  res.header('Content-Type', 'text/plain')
+                  res.send(content)
+                }
               }).catch(err => console.log('Error reading file: ' + JSON.stringify(err)))
           }
         }).catch(err => this.onError(err, res))
