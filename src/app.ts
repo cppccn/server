@@ -1,21 +1,19 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import { Constants } from './constants';
 
 const { lstatSync, readdirSync, readFile } = require('fs')
 const { join } = require('path')
 
 const ENCODING = 'utf8'
-const errors = {
-  PATH_NOT_FOUND: 'Requested path not found'
-}
 
 const isDirectory = source => {
   return new Promise((resolve, reject) => {
     try {
       resolve(lstatSync(source).isDirectory())
     } catch(err) {
-      reject({ status: 404, err: errors.PATH_NOT_FOUND})
+      reject({ status: 404, err: Constants.ERRORS.PATH_NOT_FOUND})
     }
   })
 }
@@ -39,7 +37,7 @@ const getDirectoryContent = source => {
       content = readdirSync(source)
       resolve(content.map(name => join(source, name)))
     } catch(err) {
-      reject({ status: 404, msg: errors.PATH_NOT_FOUND })
+      reject({ status: 404, msg: Constants.ERRORS.PATH_NOT_FOUND })
     }
   })
 }
