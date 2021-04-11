@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon dist/index.js",
+    "build": "gulp",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'"
   },
   "author": "",

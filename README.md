@@ -12,7 +12,7 @@ This minimalist web server try to solve the issue of https://stackoverflow.com/q
 
 ```shell
 $ npm install
-$ gulp
+$ npm run build
 $ npm start
 ```
 
