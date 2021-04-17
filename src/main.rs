@@ -1,11 +1,14 @@
 extern crate pretty_env_logger;
 
+use serde_json;
+
 use glob::glob;
 
+use std::fs;
 use std::convert::Infallible;
 
 use hyper::service::{make_service_fn, service_fn};
-use hyper::{Body, Request, Response, Server};
+use hyper::{Body, Request, Response, Server, Method};
 
 fn search(path: &str) -> Vec<String> {
     let mut paths = vec![];
@@ -19,9 +22,21 @@ fn search(path: &str) -> Vec<String> {
 }
 
 async fn handle(request: Request<Body>) -> Result<Response<Body>, Infallible> {
-    let root = "."; // TODO: pass it as a CLI args...
-    let results = search(&format!("{}{}", root, &request.uri()));
-    let response = format!("{:?}", results); // FIXME: serde_json::from_vec()
+    let response = match request.method() {
+        &Method::GET => {
+            let root = "."; // TODO: pass it as a CLI args...
+            let results = search(&format!("{}{}", root, &request.uri()));
+            if results.len() == 1 {
+                fs::read_to_string(&results[0]).unwrap()
+            } else {
+                serde_json::to_string(&results).unwrap()
+            }
+        },
+        &Method::POST => {
+            format!("/!\\ FIX ME /!\\")
+        },
+        _ => format!("Method {} not handled", request.method()),
+    };
     Ok(Response::new(Body::from(response)))
 }
 
