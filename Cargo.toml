@@ -3,6 +3,8 @@ name = "pandoro"
 version = "0.1.0"
 authors = ["Yvan Sraka <yvan@sraka.xyz>"]
 edition = "2018"
+description = "HTTP API of filesystem"
+license = "GPL-3.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
